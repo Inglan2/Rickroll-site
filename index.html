@@ -4,13 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+      {
+        "imports": {
+          "@material/web/": "https://esm.run/@material/web/"
+        }
+      }
+    </script>
+    <script type="module">
+        import '@material/web/all.js';
+        import { styles as typescaleStyles } from '@material/web/typography/md-typescale-styles.js';
+
+        document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
         rel="stylesheet">
-    <title>Google Classroom Extension Suite</title>
+    <title>Not sus</title>
     <style>
+        :root {
+            --md-sys-color-primary: #FFF;
+
+        }
+
         * {
             font-family: "Roboto", sans-serif;
             pointer-events: none;
@@ -64,11 +83,27 @@
             height: 100%;
             display: none;
         }
+
+        #load {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     </style>
 </head>
 
 <body>
+    <div id="load">
+        <md-circular-progress indeterminate></md-circular-progress>
+    </div>
     <div class="maincontent">
+
         <h1>We use cookies</h1>
         By clicking accept, you consent this site to store cookies on this device. If you decline, a cookie will be
         stored to rememeber that you clicked decline
@@ -78,12 +113,19 @@
     </div>
     <video src="rick.mp4" id="rick"></video>
     <script>
-        document.addEventListener("click", function () {
-            document.querySelector("body").requestPointerLock();
-            document.getElementById("rick").play();
-            document.getElementById("rick").style.display = "block";
-            document.querySelector("html").style.cursor = "none";
+        document.getElementById("rick").addEventListener("loadeddata", function () {
+            lod()
         })
+        function lod() {
+            document.getElementById("load").remove();
+            document.addEventListener("click", function () {
+                document.querySelector("body").requestPointerLock();
+                document.getElementById("rick").play();
+                document.getElementById("rick").style.display = "block";
+                document.querySelector("html").style.cursor = "none";
+            })
+
+        }
     </script>
 </body>
 
